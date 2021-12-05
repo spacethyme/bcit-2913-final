@@ -1,13 +1,28 @@
 import './App.css';
+import { Router, Outlet, ReactLocation } from "react-location"; // "Link" will be used in the 2 components; "useMatch" will be used by ProfilePage only
+import IntakeForm from './IntakeForm';
+import ProfilePage from './ProfilePage';
+
+const location = new ReactLocation(); // needed for Router Component
 
 export default function App() {
+
+  const routes = [
+    {
+      path: "/",
+      element: <IntakeForm />
+    },
+    {
+      path: "/:id",
+      element: <ProfilePage />
+    }
+  ]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <Router routes={routes} location={location}>
+      <div className="App">
+        <Outlet />
+      </div>
+    </Router>
   );
 }
