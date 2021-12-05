@@ -15,6 +15,22 @@ function IntakeFormTextField({ field, display }) {
     )
 }
 
+function IntakeFormCheckboxField({ field, display }) {
+    return (
+        <>
+            <label id={`${field}-label`} htmlFor={field}>
+            <input
+                type="checkbox"
+                value={display}
+                id={field}
+                name={field}
+            />
+            {display}
+            </label>
+        </>
+    )
+}
+
 export default function IntakeForm() {
     return (
         <div className="flex-wrapper">
@@ -27,38 +43,18 @@ export default function IntakeForm() {
                     <h2>Create your DevCard</h2>
 
                     <IntakeFormTextField field="fullname" display="Your Full Name" />
-                    
                     <IntakeFormTextField field="aboutme" display="About Me" />
-
                     <fieldset>
                         <legend>Technologies</legend>
-
-                        <label id="html-label" htmlFor="html">
-                            <input
-                                type="checkbox"
-                                value="HTML"
-                                id="html"
-                                name="html"
-                            />
-                            HTML
-                        </label>
-
-                        <label id="css-label" htmlFor="css">
-                            <input
-                                type="checkbox"
-                                value="CSS"
-                                id="css"
-                                name="css"
-                            />
-                            CSS
-                        </label>
-
+                        <IntakeFormCheckboxField field="html" display="HTML" />
+                        <IntakeFormCheckboxField field="css" display="CSS" />
+                        <IntakeFormCheckboxField field="js" display="JS" />
+                        <IntakeFormCheckboxField field="git" display="Git" />
+                        <IntakeFormCheckboxField field="react" display="React" />
+                        <IntakeFormCheckboxField field="nodejs" display="Node.JS" />
                     </fieldset>
-
                     <IntakeFormTextField field="urlgit" display="GitHub URL" />
-
                     <IntakeFormTextField field="urltwit" display="Twitter URL" />
-
                     <IntakeFormTextField field="books" display="Favourite Books (separate by comma)" />
 
                     <button className="signup-btn" type="submit">
