@@ -1,5 +1,5 @@
 import './App.css';
-import { Router, Outlet, ReactLocation, Link, useMatch } from "react-location";
+import { Router, Outlet, ReactLocation, useMatch } from "react-location"; // "Link" will be used in the 2 components
 import IntakeForm from './IntakeForm';
 import ProfilePage from './ProfilePage';
 
