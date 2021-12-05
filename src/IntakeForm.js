@@ -1,5 +1,20 @@
 import { Link } from "react-location";
 
+function IntakeFormTextField({ field, display }) {
+    return (
+        <div className="input-container">
+        <label id={`${field}-label`} htmlFor={field}>{display}</label>
+        <input 
+            type="text"
+            id={field}
+            name={field}
+            placeholder={display}
+            aria-labelledby={`${field}-label`}
+        />
+    </div>
+    )
+}
+
 export default function IntakeForm() {
     return (
         <div className="flex-wrapper">
@@ -11,27 +26,9 @@ export default function IntakeForm() {
                 <form>
                     <h2>Create your DevCard</h2>
 
-                    <div className="input-container">
-                        <label id="fullname-label" htmlFor="fullname">Full Name</label>
-                        <input 
-                            type="text"
-                            id="fullname"
-                            name="fullname"
-                            placeholder="Your Full Name"
-                            aria-labelledby="fullname-label"
-                        />
-                    </div>
+                    <IntakeFormTextField field="fullname" display="Your Full Name" />
                     
-                    <div className="input-container">
-                        <label id="aboutme-label" htmlFor="aboutme">About Me</label>
-                        <input 
-                            type="text"
-                            id="aboutme"
-                            name="aboutme"
-                            placeholder="About Me"
-                            aria-labelledby="aboutme-label"
-                        />
-                    </div>
+                    <IntakeFormTextField field="aboutme" display="About Me" />
 
                     <fieldset>
                         <legend>Technologies</legend>
@@ -58,16 +55,11 @@ export default function IntakeForm() {
 
                     </fieldset>
 
-                    <div className="input-container">
-                        <label id="urlgit-label" htmlFor="urlgit">GitHub URL</label>
-                        <input 
-                            type="text"
-                            id="urlgit"
-                            name="urlgit"
-                            placeholder="GitHub URL"
-                            aria-labelledby="urlgit-label"
-                        />
-                    </div>
+                    <IntakeFormTextField field="urlgit" display="GitHub URL" />
+
+                    <IntakeFormTextField field="urltwit" display="Twitter URL" />
+
+                    <IntakeFormTextField field="books" display="Favourite Books (separate by comma)" />
 
                     <button className="signup-btn" type="submit">
                         Create Site
