@@ -68,6 +68,7 @@ export default function IntakeForm({ aboutMe, setAboutMe }) {
                 <div>
                     <h1>DevCard</h1>
                     <p>Your personal digital portfolio</p>
+                    <button onClick={() => {setAboutMe("AppClicky")}} >{aboutMe}</button>
                 </div>
             </section>
             <section className="intake-form">

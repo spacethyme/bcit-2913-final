@@ -24,6 +24,7 @@ export default function App() {
   return (
     <Router routes={routes} location={location}>
       <div className="App">
+        <button onClick={() => {setAboutMe("AppClicky")}} >{aboutMe}</button>
         <Outlet />
       </div>
     </Router>
