@@ -48,10 +48,12 @@ function IntakeFormCheckboxField({ field, display }) {
 
 export default function IntakeForm() {
     return (
-        <div className="flex-wrapper">
+        <div className="form-flex-wrapper">
             <section className="logo-and-name">
-                <h1>DevCard</h1>
-                <p>Your personal digital portfolio</p>
+                <div>
+                    <h1>DevCard</h1>
+                    <p>Your personal digital portfolio</p>
+                </div>
             </section>
             <section className="intake-form">
                 <form>
@@ -60,7 +62,7 @@ export default function IntakeForm() {
                     <IntakeFormTextField field="fullname" display="Your Full Name" />
                     <IntakeFormTextarea field="aboutme" display="About Me" />
                     <fieldset>
-                        <legend>Technologies</legend>
+                        <legend>Technologies you know:</legend>
                         <IntakeFormCheckboxField field="html" display="HTML" />
                         <IntakeFormCheckboxField field="css" display="CSS" />
                         <IntakeFormCheckboxField field="js" display="JS" />

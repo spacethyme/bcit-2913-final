@@ -13,7 +13,6 @@ img {max-width: 100%; height: auto;}
 
 h1, h2 {
   font-family: Georgia, Garamond, 'Times New Roman', Times, serif;
-  font-weight: normal;
 }
 
 textarea {
@@ -22,30 +21,39 @@ textarea {
 
 
 /* Page 1 -- IntakeForm Component */
-.flex-wrapper {
-  min-width: 320px;
+.form-flex-wrapper {
+  min-width: 300px;
   text-align: center;
-}
-
-.flex-wrapper section {
-  padding: 0.5em;
 }
 
 .logo-and-name {
   background-color: black;
   color: white;
+  padding: 0.5em;
+}
+
+.logo-and-name>div {
+  margin: 2em 0;
 }
 
 @media (min-width:750px) {
-  .flex-wrapper {
+  .form-flex-wrapper {
     display: flex;
   }
   .logo-and-name {
     width: 40%;
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo-and-name>div {
+    margin-top: 0;
   }
   .intake-form {
     width: 60%;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -56,7 +64,7 @@ textarea {
 }
 
 .input-container { /* "input-container" is a wrapper for text input and text area fields */
-  margin: 0.25em 0;
+  margin: 0.5em 0;
 }
 
 .input-container>label { /* hidden labels for screen readers, which have difficulty with "placeholder" text */
