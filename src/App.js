@@ -1,4 +1,5 @@
 import './App.css';
+//import { useState } from "react";
 import { Router, Outlet, ReactLocation } from "react-location"; // "Link" will be used in the 2 components; "useMatch" will be used by ProfilePage only
 import IntakeForm from './IntakeForm';
 import ProfilePage from './ProfilePage';
