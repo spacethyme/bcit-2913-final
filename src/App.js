@@ -14,8 +14,8 @@ export default function App() {
       element: <IntakeForm />
     },
     {
-      path: "/:id",
-      element: <ProfilePage />
+      path: "profile",
+      element: <ProfilePage formData={""} /> // blank formData for now, just to test page
     }
   ]
 
