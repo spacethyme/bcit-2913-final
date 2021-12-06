@@ -1,8 +1,83 @@
-.App {
+@charset "utf-8";
+/* CSS styles for comp2913 final project */
+
+/* box sizing reset, credit to https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+html {box-sizing: border-box;}
+  *, *:before, *:after {box-sizing: inherit;}
+
+/* img reset */
+img {max-width: 100%; height: auto;}
+
+
+/* fonts all in one place. */
+
+h1, h2 {
+  font-family: Georgia, Garamond, 'Times New Roman', Times, serif;
+  font-weight: normal;
+}
+
+
+/* IntakeForm Component */
+.flex-wrapper {
+  min-width: 320px;
   text-align: center;
 }
 
-/* hidden labels for screen readers, which have difficulty with "placeholder" text */
+
+.flex-wrapper section {
+  padding: 0.5em;
+}
+
+.logo-and-name {
+  background-color: black;
+  color: white;
+}
+
+@media (min-width:750px) {
+  .flex-wrapper {
+    display: flex;
+  }
+  .logo-and-name {
+    width: 40%;
+    height: 100vh;
+  }
+  .intake-form {
+    width: 60%;
+  }
+}
+
+.intake-form form {
+  max-width: 350px;
+  margin: 0 auto 1em;
+  padding: 0 0.5em;
+}
+
+.intake-form fieldset {
+  margin: 0.5em auto;
+  max-width: 80%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.intake-form fieldset>label {
+  min-width: 5em;
+  text-align: left;
+}
+
+.intake-form button {
+  width: 100%;
+}
+
+.input-container {
+  margin: 0.25em 0;
+}
+
 .input-container>label { 
-  display: none;
+  display: none; /* hidden labels for screen readers, which have difficulty with "placeholder" text */
+}
+
+.input-container>input {
+  width: 100%;
+  font-size: 1rem;
 }
