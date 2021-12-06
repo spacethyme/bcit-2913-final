@@ -16,13 +16,16 @@ h1, h2 {
   font-weight: normal;
 }
 
+textarea {
+  font-family: sans-serif;
+}
 
-/* IntakeForm Component */
+
+/* Page 1 -- IntakeForm Component */
 .flex-wrapper {
   min-width: 320px;
   text-align: center;
 }
-
 
 .flex-wrapper section {
   padding: 0.5em;
@@ -52,12 +55,40 @@ h1, h2 {
   padding: 0 0.5em;
 }
 
-.intake-form fieldset {
+.input-container { /* "input-container" is a wrapper for text input and text area fields */
+  margin: 0.25em 0;
+}
+
+.input-container>label { /* hidden labels for screen readers, which have difficulty with "placeholder" text */
+  display: none;
+}
+
+.input-container>input { /* regular text fields */
+  line-height: 2.5;
+}
+
+.input-container>textarea { /* larger text field, i.e.: "About Me" */
+  resize: none;
+  line-height: 1.8;
+}
+
+.input-container>input,
+.input-container>textarea {
+  width: 100%;
+  font-size: 1rem;
+  border-radius: 0.5em;
+  background-color: #eee;
+  border: none;
+  padding: 0.2em 0.5em;
+}
+
+.intake-form fieldset { /* fieldset = the section with checkboxes */
   margin: 0.5em auto;
   max-width: 80%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
+  border-radius: 0.5em;
 }
 
 .intake-form fieldset>label {
@@ -67,23 +98,18 @@ h1, h2 {
 
 .intake-form button {
   width: 100%;
-}
-
-.input-container {
-  margin: 0.25em 0;
-}
-
-.input-container>label { 
-  display: none; /* hidden labels for screen readers, which have difficulty with "placeholder" text */
-}
-
-.input-container>input,
-.input-container>textarea {
-  width: 100%;
   font-size: 1rem;
+  line-height: 2.5;
+  background-color: black;
+  color: #eee;
+  font-weight: bold;
+  border-radius: 0.6em;
+  border: none;
 }
 
-.input-container>textarea {
-  resize: none;
-  font-family: sans-serif;
+.intake-form button:hover,
+.intake-form button:focus {
+  background-color: midnightblue;
+  color: white;
+  cursor: pointer;
 }
