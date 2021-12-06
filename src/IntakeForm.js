@@ -15,6 +15,21 @@ function IntakeFormTextField({ field, display }) {
     )
 }
 
+function IntakeFormTextarea({ field, display }) {
+    return (
+        <div className="input-container">
+            <label id={`${field}-label`} htmlFor={field}>{display}</label>
+            <textarea
+                id={field}
+                name={field}
+                placeholder={display}
+                rows="3"
+                aria-labelledby={`${field}-label`}
+            />
+        </div>
+    )
+}
+
 function IntakeFormCheckboxField({ field, display }) {
     return (
         <>
@@ -43,7 +58,7 @@ export default function IntakeForm() {
                     <h2>Create your DevCard</h2>
 
                     <IntakeFormTextField field="fullname" display="Your Full Name" />
-                    <IntakeFormTextField field="aboutme" display="About Me" />
+                    <IntakeFormTextarea field="aboutme" display="About Me" />
                     <fieldset>
                         <legend>Technologies</legend>
                         <IntakeFormCheckboxField field="html" display="HTML" />

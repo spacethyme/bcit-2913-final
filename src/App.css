@@ -77,7 +77,13 @@ h1, h2 {
   display: none; /* hidden labels for screen readers, which have difficulty with "placeholder" text */
 }
 
-.input-container>input {
+.input-container>input,
+.input-container>textarea {
   width: 100%;
   font-size: 1rem;
+}
+
+.input-container>textarea {
+  resize: none;
+  font-family: sans-serif;
 }
