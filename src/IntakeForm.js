@@ -1,4 +1,10 @@
-import { Link } from "react-location";
+// import { Link } from "react-location";
+// import { useState } from "react";
+
+// I cannot get setAboutMe to work
+// I can get it to work if I useState inside the IntakeForm
+// I can get it to run from App.js if I DON'T use the Router
+// I've checked it over many times, I don't know what I'm doing wrong?
 
 function IntakeFormTextField({ field, display }) {
     return (
@@ -15,7 +21,8 @@ function IntakeFormTextField({ field, display }) {
     )
 }
 
-function IntakeFormTextarea({ field, display }) {
+//not using this for now
+function IntakeFormTextarea({ field, display, aboutMe, setAboutMe }) {
     return (
         <div className="input-container">
             <label id={`${field}-label`} htmlFor={field}>{display}</label>
@@ -25,6 +32,11 @@ function IntakeFormTextarea({ field, display }) {
                 placeholder={display}
                 rows="3"
                 aria-labelledby={`${field}-label`}
+                onChange={(e) => {
+                    console.log(e.target.value);
+                    setAboutMe(e.target.value);
+                    console.log(aboutMe);
+                }}
             />
         </div>
     )
@@ -46,7 +58,10 @@ function IntakeFormCheckboxField({ field, display }) {
     )
 }
 
-export default function IntakeForm() {
+export default function IntakeForm({ aboutMe, setAboutMe }) {
+
+    //const [aboutMe, setAboutMe] = useState("defaultAboutMe");
+
     return (
         <div className="form-flex-wrapper">
             <section className="logo-and-name">
@@ -60,7 +75,23 @@ export default function IntakeForm() {
                     <h2>Create your DevCard</h2>
 
                     <IntakeFormTextField field="fullname" display="Your Full Name" />
-                    <IntakeFormTextarea field="aboutme" display="About Me" />
+
+                    <div className="input-container">
+                        <label id="aboutme-label" htmlFor="aboutme">About Me</label>
+                        <textarea
+                            id="aboutme"
+                            name="aboutme"
+                            placeholder="About Me"
+                            rows="3"
+                            aria-labelledby={"aboutme-label"}
+                            onChange={(e) => {
+                                setAboutMe(e.target.value);
+                                console.log(e.target.value);
+                                console.log(aboutMe);
+                            }}
+                        />
+                    </div>
+
                     <fieldset>
                         <legend>Technologies you know:</legend>
                         <IntakeFormCheckboxField field="html" display="HTML" />
