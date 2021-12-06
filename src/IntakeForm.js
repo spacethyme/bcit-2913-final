@@ -1,10 +1,5 @@
 // import { Link } from "react-location";
-// import { useState } from "react";
-
-// I cannot get setAboutMe to work
-// I can get it to work if I useState inside the IntakeForm
-// I can get it to run from App.js if I DON'T use the Router
-// I've checked it over many times, I don't know what I'm doing wrong?
+import { useState } from "react";
 
 function IntakeFormTextField({ field, display }) {
     return (
@@ -21,8 +16,7 @@ function IntakeFormTextField({ field, display }) {
     )
 }
 
-//not using this for now
-function IntakeFormTextarea({ field, display, aboutMe, setAboutMe }) {
+function IntakeFormTextarea({ field, display }) {
     return (
         <div className="input-container">
             <label id={`${field}-label`} htmlFor={field}>{display}</label>
@@ -32,25 +26,21 @@ function IntakeFormTextarea({ field, display, aboutMe, setAboutMe }) {
                 placeholder={display}
                 rows="3"
                 aria-labelledby={`${field}-label`}
-                onChange={(e) => {
-                    console.log(e.target.value);
-                    setAboutMe(e.target.value);
-                    console.log(aboutMe);
-                }}
             />
         </div>
     )
 }
 
-function IntakeFormCheckboxField({ field, display }) {
+function IntakeFormCheckboxField({ field, display, handleChange }) {
     return (
         <>
             <label id={`${field}-label`} htmlFor={field}>
                 <input
                     type="checkbox"
-                    value={display}
+                    value={field}
                     id={field}
                     name={field}
+                    onChange={(e) => handleChange(e)}
                 />
                 {display}
             </label>
@@ -60,7 +50,24 @@ function IntakeFormCheckboxField({ field, display }) {
 
 export default function IntakeForm({ aboutMe, setAboutMe }) {
 
-    //const [aboutMe, setAboutMe] = useState("defaultAboutMe");
+    const [formData, setFormData] = useState ({
+        fullname: "",
+        aboutme: "",
+        urlgit: "",
+        urltwit: "",
+        books: "",
+        html: false,
+        css: false,
+        js: false,
+        git: false,
+        react: false,
+        nodejs: false,
+    })
+
+    const handleChange = (e) => {
+        let isChecked = e.target.checked;
+        setFormData({...formData, [e.target.value]: isChecked});
+    }    
 
     return (
         <div className="form-flex-wrapper">
@@ -68,7 +75,7 @@ export default function IntakeForm({ aboutMe, setAboutMe }) {
                 <div>
                     <h1>DevCard</h1>
                     <p>Your personal digital portfolio</p>
-                    <button onClick={() => {setAboutMe("AppClicky")}} >{aboutMe}</button>
+                    <p>{JSON.stringify(formData)}</p>
                 </div>
             </section>
             <section className="intake-form">
@@ -76,31 +83,15 @@ export default function IntakeForm({ aboutMe, setAboutMe }) {
                     <h2>Create your DevCard</h2>
 
                     <IntakeFormTextField field="fullname" display="Your Full Name" />
-
-                    <div className="input-container">
-                        <label id="aboutme-label" htmlFor="aboutme">About Me</label>
-                        <textarea
-                            id="aboutme"
-                            name="aboutme"
-                            placeholder="About Me"
-                            rows="3"
-                            aria-labelledby={"aboutme-label"}
-                            onChange={(e) => {
-                                setAboutMe(e.target.value);
-                                console.log(e.target.value);
-                                console.log(aboutMe);
-                            }}
-                        />
-                    </div>
-
+                    <IntakeFormTextarea field="aboutme" display="About Me" />
                     <fieldset>
                         <legend>Technologies you know:</legend>
-                        <IntakeFormCheckboxField field="html" display="HTML" />
-                        <IntakeFormCheckboxField field="css" display="CSS" />
-                        <IntakeFormCheckboxField field="js" display="JS" />
-                        <IntakeFormCheckboxField field="git" display="Git" />
-                        <IntakeFormCheckboxField field="react" display="React" />
-                        <IntakeFormCheckboxField field="nodejs" display="Node.JS" />
+                        <IntakeFormCheckboxField field="html" display="HTML" handleChange={handleChange} />
+                        <IntakeFormCheckboxField field="css" display="CSS" handleChange={handleChange} />
+                        <IntakeFormCheckboxField field="js" display="JS" handleChange={handleChange} />
+                        <IntakeFormCheckboxField field="git" display="Git" handleChange={handleChange} />
+                        <IntakeFormCheckboxField field="react" display="React" handleChange={handleChange} />
+                        <IntakeFormCheckboxField field="nodejs" display="Node.JS" handleChange={handleChange} />
                     </fieldset>
                     <IntakeFormTextField field="urlgit" display="GitHub URL" />
                     <IntakeFormTextField field="urltwit" display="Twitter URL" />
