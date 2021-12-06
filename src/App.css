@@ -36,6 +36,12 @@ textarea {
   margin: 2em 0;
 }
 
+.intake-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (min-width:750px) {
   .form-flex-wrapper {
     display: flex;
@@ -52,15 +58,12 @@ textarea {
   }
   .intake-form {
     width: 60%;
-    display: flex;
-    align-items: center;
   }
 }
 
 .intake-form form {
   max-width: 350px;
-  margin: 0 auto 1em;
-  padding: 0 0.5em;
+  padding: 0.5em;
 }
 
 .input-container { /* "input-container" is a wrapper for text input and text area fields */
