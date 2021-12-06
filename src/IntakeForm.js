@@ -1,7 +1,7 @@
 // import { Link } from "react-location";
 import { useState } from "react";
 
-function IntakeFormTextField({ field, display }) {
+function IntakeFormTextField({ field, display, handleText }) {
     return (
         <div className="input-container">
             <label id={`${field}-label`} htmlFor={field}>{display}</label>
@@ -11,12 +11,13 @@ function IntakeFormTextField({ field, display }) {
                 name={field}
                 placeholder={display}
                 aria-labelledby={`${field}-label`}
+                onChange={(e) => handleText(e)}
             />
         </div>
     )
 }
 
-function IntakeFormTextarea({ field, display }) {
+function IntakeFormTextarea({ field, display, handleText }) {
     return (
         <div className="input-container">
             <label id={`${field}-label`} htmlFor={field}>{display}</label>
@@ -26,12 +27,13 @@ function IntakeFormTextarea({ field, display }) {
                 placeholder={display}
                 rows="3"
                 aria-labelledby={`${field}-label`}
+                onChange={(e) => handleText(e)}
             />
         </div>
     )
 }
 
-function IntakeFormCheckboxField({ field, display, handleChange }) {
+function IntakeFormCheckboxField({ field, display, handleCheck }) {
     return (
         <>
             <label id={`${field}-label`} htmlFor={field}>
@@ -40,7 +42,7 @@ function IntakeFormCheckboxField({ field, display, handleChange }) {
                     value={field}
                     id={field}
                     name={field}
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => handleCheck(e)}
                 />
                 {display}
             </label>
@@ -64,10 +66,14 @@ export default function IntakeForm({ aboutMe, setAboutMe }) {
         nodejs: false,
     })
 
-    const handleChange = (e) => {
+    const handleCheck = (e) => {
         let isChecked = e.target.checked;
-        setFormData({...formData, [e.target.value]: isChecked});
-    }    
+        setFormData({...formData, [e.target.value]: isChecked}); // clone the object, then update one value
+    }
+
+    const handleText = (e) => {
+        setFormData({...formData, [e.target.name]: [e.target.value]}); // update field "name" with "value"
+    }
 
     return (
         <div className="form-flex-wrapper">
@@ -82,20 +88,20 @@ export default function IntakeForm({ aboutMe, setAboutMe }) {
                 <form>
                     <h2>Create your DevCard</h2>
 
-                    <IntakeFormTextField field="fullname" display="Your Full Name" />
-                    <IntakeFormTextarea field="aboutme" display="About Me" />
+                    <IntakeFormTextField field="fullname" display="Your Full Name" handleText={handleText} />
+                    <IntakeFormTextarea field="aboutme" display="About Me" handleText={handleText} />
                     <fieldset>
                         <legend>Technologies you know:</legend>
-                        <IntakeFormCheckboxField field="html" display="HTML" handleChange={handleChange} />
-                        <IntakeFormCheckboxField field="css" display="CSS" handleChange={handleChange} />
-                        <IntakeFormCheckboxField field="js" display="JS" handleChange={handleChange} />
-                        <IntakeFormCheckboxField field="git" display="Git" handleChange={handleChange} />
-                        <IntakeFormCheckboxField field="react" display="React" handleChange={handleChange} />
-                        <IntakeFormCheckboxField field="nodejs" display="Node.JS" handleChange={handleChange} />
+                        <IntakeFormCheckboxField field="html" display="HTML" handleCheck={handleCheck} />
+                        <IntakeFormCheckboxField field="css" display="CSS" handleCheck={handleCheck} />
+                        <IntakeFormCheckboxField field="js" display="JS" handleCheck={handleCheck} />
+                        <IntakeFormCheckboxField field="git" display="Git" handleCheck={handleCheck} />
+                        <IntakeFormCheckboxField field="react" display="React" handleCheck={handleCheck} />
+                        <IntakeFormCheckboxField field="nodejs" display="Node.JS" handleCheck={handleCheck} />
                     </fieldset>
-                    <IntakeFormTextField field="urlgit" display="GitHub URL" />
-                    <IntakeFormTextField field="urltwit" display="Twitter URL" />
-                    <IntakeFormTextField field="books" display="Favourite Books (separate by comma)" />
+                    <IntakeFormTextField field="urlgit" display="GitHub URL" handleText={handleText} />
+                    <IntakeFormTextField field="urltwit" display="Twitter URL" handleText={handleText} />
+                    <IntakeFormTextField field="books" display="Favourite Books (separate by comma)" handleText={handleText} />
 
                     <button className="signup-btn" type="submit">
                         Create Site
