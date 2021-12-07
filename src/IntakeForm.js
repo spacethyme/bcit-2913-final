@@ -1,5 +1,4 @@
 // import { Link } from "react-location";
-import { useState } from "react";
 
 function IntakeFormTextField({ field, display, handleText }) {
     return (
@@ -50,29 +49,15 @@ function IntakeFormCheckboxField({ field, display, handleCheck }) {
     )
 }
 
-export default function IntakeForm({ aboutMe, setAboutMe }) {
-
-    const [formData, setFormData] = useState ({
-        fullname: "",
-        aboutme: "",
-        urlgit: "",
-        urltwit: "",
-        books: "",
-        html: false,
-        css: false,
-        js: false,
-        git: false,
-        react: false,
-        nodejs: false,
-    })
+export default function IntakeForm({ formData, setFormData }) {
 
     const handleCheck = (e) => {
         let isChecked = e.target.checked;
-        setFormData({...formData, [e.target.value]: isChecked}); // clone the object, then update one value
+        setFormData({ ...formData, [e.target.value]: isChecked}); // clone the object, then update one value
     }
 
     const handleText = (e) => {
-        setFormData({...formData, [e.target.name]: [e.target.value]}); // update field "name" with "value"
+        setFormData({ ...formData, [e.target.name]: [e.target.value]}); // update field "name" with "value"
     }
 
     return (
@@ -81,7 +66,6 @@ export default function IntakeForm({ aboutMe, setAboutMe }) {
                 <div>
                     <h1>DevCard</h1>
                     <p>Your personal digital portfolio</p>
-                    <p>{JSON.stringify(formData)}</p>
                 </div>
             </section>
             <section className="intake-form">
