@@ -1,4 +1,4 @@
-// import { Link } from "react-location";
+import { useNavigate } from "react-location";
 
 function IntakeFormTextField({ field, display, handleText }) {
     return (
@@ -51,6 +51,8 @@ function IntakeFormCheckboxField({ field, display, handleCheck }) {
 
 export default function IntakeForm({ formData, setFormData }) {
 
+    const navigate = useNavigate();
+
     const handleCheck = (e) => {
         let isChecked = e.target.checked;
         setFormData({ ...formData, [e.target.value]: isChecked}); // clone the object, then update one value
@@ -58,6 +60,11 @@ export default function IntakeForm({ formData, setFormData }) {
 
     const handleText = (e) => {
         setFormData({ ...formData, [e.target.name]: [e.target.value]}); // update field "name" with "value"
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();  // suppress default behaviour, i.e.: don't refresh page when button is clicked
+        navigate({ to: "profile", replace: true })
     }
 
     return (
@@ -87,7 +94,7 @@ export default function IntakeForm({ formData, setFormData }) {
                     <IntakeFormTextField field="urltwit" display="Twitter URL" handleText={handleText} />
                     <IntakeFormTextField field="books" display="Favourite Books (separate by comma)" handleText={handleText} />
 
-                    <button className="signup-btn" type="submit">
+                    <button onClick={handleClick} className="signup-btn" type="submit">
                         Create Site
                     </button>
                     

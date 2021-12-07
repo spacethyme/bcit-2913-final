@@ -19,7 +19,7 @@ export default function ProfilePage({ formData }) {
                       <div className="infos">
                         <span>
                           <i className="fas fa-user-circle"></i>&nbsp;&nbsp;
-                          {formData.fullName}
+                          {formData.fullname}
                         </span>
                         <span>
                           <i className="fas fa-briefcase"></i>&nbsp;&nbsp;Full Stack
@@ -67,16 +67,7 @@ export default function ProfilePage({ formData }) {
                       <i className="fas fa-hand-point-right"></i>&nbsp;About me
                     </h1>
                     <div className="text">
-                      <p>
-                        Hi, my name is&nbsp;<b>Armaan Dhanji</b>, but I'm better
-                        known by my nickname&nbsp;<i>@armaand</i>, and I'm a
-                        teacher in the School of Computing at BCIT.
-                      </p>
-                      <p>
-                        I&nbsp;&nbsp;<i className="fas fa-heart"></i>&nbsp; to code
-                        full-stack projects, always looking for innovative ways
-                        to write code that follows practices!
-                      </p>
+                      {formData.aboutme}
                     </div>
                   </div>
                   <div className="lx-row lx-card">
