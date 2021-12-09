@@ -54,12 +54,15 @@ export default function IntakeForm({ formData, setFormData }) {
     const navigate = useNavigate();
 
     const handleCheck = (e) => {
-        let isChecked = e.target.checked;
-        setFormData({ ...formData, [e.target.value]: isChecked}); // clone the object, then update one value
+        let field = e.target.value; // the checkboxes each have a "value" that matches field name
+        let newvalue = e.target.checked; // i.e.: true or false
+        setFormData((formData) => {return {...formData, [field]: newvalue}});
     }
 
     const handleText = (e) => {
-        setFormData({ ...formData, [e.target.name]: [e.target.value]}); // update field "name" with "value"
+        let field = e.target.name; // the text fields each have a "name" that matches the field name
+        let newvalue = e.target.value; // i.e.: the contents of the input box
+        setFormData((formData) => {return {...formData, [field]: newvalue}});
     }
 
     const handleClick = (e) => {
