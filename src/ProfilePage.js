@@ -1,6 +1,14 @@
 import "./profile.css"; // provided to us in class
 import "./luxa_modified.css"; // additional styles needed for containers, rows, cards, etc.
 
+function HeadingWithIcon({ icon, children }) {
+  return (
+    <h1 className="title">
+      <i className={icon}></i>&nbsp;{children}
+    </h1>
+  )
+}
+
 function TechButton({ title, icon }) {
   return (
     <span className="has-dflex-center bs-md" title={title}>
@@ -53,7 +61,7 @@ export default function ProfilePage({ formData }) {
                         </a>
                         <a
                           className="has-dflex-center bs-md"
-                          href="formData.urltwit"
+                          href={formData.urltwit}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -67,23 +75,22 @@ export default function ProfilePage({ formData }) {
               <div className="lx-column">
                 <div className="lx-row">
                   <div className="lx-row lx-card">
-                    <h1 className="title">
-                      <i className="fas fa-info-circle"></i>&nbsp;Welcome to
-                      Armaan's corner of the Internet
-                    </h1>
+                    <HeadingWithIcon icon="fas fa-info-circle">
+                      Welcome to Armaan's corner of the Internet
+                    </HeadingWithIcon>
                   </div>
                   <div className="lx-row lx-card">
-                    <h1 className="title">
-                      <i className="fas fa-hand-point-right"></i>&nbsp;About me
-                    </h1>
+                    <HeadingWithIcon icon="fas fa-hand-point-right">
+                      About me
+                    </HeadingWithIcon>
                     <div className="text">
                       {formData.aboutme}
                     </div>
                   </div>
                   <div className="lx-row lx-card">
-                    <h1 className="title">
-                      <i className="fas fa-terminal"></i>&nbsp;Technologies
-                    </h1>
+                    <HeadingWithIcon icon="fas fa-terminal">
+                      Technologies
+                    </HeadingWithIcon>
                     <div className="mini-cards">
                       {formData.html ? <TechButton title="HTML" icon="fab fa-html5" /> : "" }
                       {formData.css ? <TechButton title="CSS" icon="fab fa-css3-alt" /> : "" }
@@ -96,9 +103,9 @@ export default function ProfilePage({ formData }) {
                     </div>
                   </div>
                   <div className="lx-row lx-card">
-                    <h1 className="title">
-                      <i className="fas fa-book"></i>&nbsp;My favorite books
-                    </h1>
+                    <HeadingWithIcon icon="fas fa-book">
+                      My favorite books
+                    </HeadingWithIcon>
                     <div className="text">
                       <p>this should be a list:</p>
                       <p>{formData.books}</p>
