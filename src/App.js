@@ -16,10 +16,12 @@ export default function App() {
     books: "",
     html: false,
     css: false,
+    sass: false,
     js: false,
     git: false,
     react: false,
     nodejs: false,
+    php: false,
 });
 
   const routes = [
@@ -36,7 +38,6 @@ export default function App() {
   return (
     <Router routes={routes} location={location}>
       <div className="App">
-        {JSON.stringify(formData)}
         <Outlet />
       </div>
     </Router>

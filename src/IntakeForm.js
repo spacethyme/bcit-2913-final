@@ -88,10 +88,12 @@ export default function IntakeForm({ formData, setFormData }) {
                         <legend>Technologies you know:</legend>
                         <IntakeFormCheckboxField field="html" display="HTML" handleCheck={handleCheck} />
                         <IntakeFormCheckboxField field="css" display="CSS" handleCheck={handleCheck} />
+                        <IntakeFormCheckboxField field="sass" display="SASS" handleCheck={handleCheck} />
                         <IntakeFormCheckboxField field="js" display="JS" handleCheck={handleCheck} />
                         <IntakeFormCheckboxField field="git" display="Git" handleCheck={handleCheck} />
                         <IntakeFormCheckboxField field="react" display="React" handleCheck={handleCheck} />
                         <IntakeFormCheckboxField field="nodejs" display="Node.JS" handleCheck={handleCheck} />
+                        <IntakeFormCheckboxField field="php" display="PHP" handleCheck={handleCheck} />
                     </fieldset>
                     <IntakeFormTextField field="urlgit" display="GitHub URL" handleText={handleText} />
                     <IntakeFormTextField field="urltwit" display="Twitter URL" handleText={handleText} />

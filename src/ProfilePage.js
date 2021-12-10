@@ -1,5 +1,14 @@
-import "./profile.css";
-import "./luxa_modified.css";
+import "./profile.css"; // provided to us in class
+import "./luxa_modified.css"; // additional styles needed for containers, rows, cards, etc.
+
+function TechButton({ title, icon }) {
+  return (
+    <span className="has-dflex-center bs-md" title={title}>
+      <i className={icon}></i>
+    </span>
+  )
+}
+
 export default function ProfilePage({ formData }) {
   return (
     <div className="pageBody">
@@ -76,36 +85,14 @@ export default function ProfilePage({ formData }) {
                       <i className="fas fa-terminal"></i>&nbsp;Technologies
                     </h1>
                     <div className="mini-cards">
-                      <span className="has-dflex-center bs-md" title="CSS">
-                        <i className="fab fa-css3-alt"></i>
-                      </span>
-                      <span className="has-dflex-center bs-md" title="HTML">
-                        <i className="fab fa-html5"></i>
-                      </span>
-                      <span className="has-dflex-center bs-md" title="JS">
-                        <i className="fab fa-js"></i>
-                      </span>
-                      <span className="has-dflex-center bs-md" title="Sass">
-                        <i className="fab fa-sass"></i>
-                      </span>
-                      <span className="has-dflex-center bs-md" title="Git">
-                        <i className="fab fa-git-alt"></i>
-                      </span>
-                      <span className="has-dflex-center bs-md" title="Gulp">
-                        <i className="fab fa-gulp"></i>
-                      </span>
-                      <span className="has-dflex-center bs-md" title="Node JS">
-                        <i className="fab fa-node-js"></i>
-                      </span>
-                      <span className="has-dflex-center bs-md" title="NPM">
-                        <i className="fab fa-npm"></i>
-                      </span>
-                      <span className="has-dflex-center bs-md" title="PHP">
-                        <i className="fab fa-php"></i>
-                      </span>
-                      <span className="has-dflex-center bs-md" title="React">
-                        <i className="fab fa-react"></i>
-                      </span>
+                      {formData.html ? <TechButton title="HTML" icon="fab fa-html5" /> : "" }
+                      {formData.css ? <TechButton title="CSS" icon="fab fa-css3-alt" /> : "" }
+                      {formData.sass ? <TechButton title="SASS" icon="fab fa-sass" /> : "" }
+                      {formData.js ? <TechButton title="JS" icon="fab fa-js" /> : "" }
+                      {formData.git ? <TechButton title="Git" icon="fab fa-git" /> : "" }
+                      {formData.react ? <TechButton title="React" icon="fab fa-react" /> : ""}
+                      {formData.nodejs ? <TechButton title="Node.JS" icon="fab fa-node-js" /> : ""}
+                      {formData.php ? <TechButton title="PHP" icon="fab fa-php" /> : ""}
                     </div>
                   </div>
                   <div className="lx-row lx-card">
