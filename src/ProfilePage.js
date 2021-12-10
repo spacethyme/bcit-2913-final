@@ -1,4 +1,5 @@
 import "./profile.css";
+import "./luxa_modified.css";
 export default function ProfilePage({ formData }) {
   return (
     <div className="pageBody">
@@ -35,7 +36,7 @@ export default function ProfilePage({ formData }) {
                       <div className="mini-cards">
                         <a
                           className="has-dflex-center bs-md"
-                          href="https://github.com/adhanji8"
+                          href={formData.urlgit}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -43,7 +44,7 @@ export default function ProfilePage({ formData }) {
                         </a>
                         <a
                           className="has-dflex-center bs-md"
-                          href="https://www.twitter.com/bcit"
+                          href="formData.urltwit"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -112,35 +113,8 @@ export default function ProfilePage({ formData }) {
                       <i className="fas fa-book"></i>&nbsp;My favorite books
                     </h1>
                     <div className="text">
-                      <ol>
-                        <li>
-                          <p>
-                            <b>The Lord of the Rings</b>&nbsp;- J. R. R. Tolkien
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>Foundation series</b>&nbsp;- Isaac Asimov
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>Cracking the Coding Interview</b>&nbsp;- Gayle
-                            Laakmann
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>Clean Code</b>&nbsp;- Rob Martin
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>A Brief History of Time</b>&nbsp;- Stephen
-                            Hawking
-                          </p>
-                        </li>
-                      </ol>
+                      <p>this should be a list:</p>
+                      <p>{formData.books}</p>
                     </div>
                   </div>
                 </div>
