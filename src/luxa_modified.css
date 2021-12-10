@@ -23,61 +23,14 @@ h1 {
   font-size: 3.052rem;
 }
 
-hr {
-  box-sizing: content-box;
-  overflow: visible;
-}
-
 a,
 button {
   -webkit-tap-highlight-color: transparent;
-  outline: none;
+  /* outline: none; removing this for accessibility */
   cursor: pointer;
   text-decoration: none;
   color: inherit;
   background-color: transparent;
-}
-
-b,
-strong {
-  font-weight: bold;
-}
-
-img {
-  max-width: 100%;
-  max-height: 100%;
-  border-style: none;
-}
-
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit;
-  font-size: 100%;
-  line-height: 1;
-  margin: 0;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.25rem;
-}
-
-button,
-select {
-  text-transform: none;
-}
-
-textarea {
-  overflow: auto;
-}
-
-[type="checkbox"],
-[type="radio"] {
-  padding: 0;
-}
-
-[type="search"] {
-  outline-offset: -0.125rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -127,84 +80,6 @@ textarea {
 .lx-card.is-muted {
   user-select: none;
   filter: grayscale(0.4) opacity(0.6);
-}
-
-.lx-btn {
-  outline: 0;
-  padding: calc(0.5rem - 0.063rem) 1rem;
-  vertical-align: middle;
-  text-align: center;
-  border-radius: 0.262rem;
-  border: none;
-  text-transform: uppercase;
-  box-shadow: 0 0.125rem 0.125rem 0 rgba(0, 0, 0, 0.14), 0 0.1875rem 0.0625rem -0.125rem rgba(0, 0, 0, 0.12), 0 0.0625rem 0.3125rem 0 rgba(0, 0, 0, 0.2);
-}
-
-.lx-btn.is-small {
-  padding: 0.688rem 2.5rem;
-  font-size: 0.75rem;
-}
-
-.lx-btn.is-medium {
-  padding: 0.813rem 2.813rem;
-  font-size: 1rem;
-}
-
-.lx-btn.is-large {
-  padding: 0.938rem 3.125rem;
-  font-size: 1.25rem;
-}
-
-input {
-  outline: none;
-  width: 100%;
-  margin: 0;
-  padding: 0.3rem 0.6rem;
-  line-height: normal;
-  font-family: inherit;
-  font-size: inherit;
-}
-
-label {
-  display: block;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: 700;
-}
-
-label:not(:last-child) {
-  margin-bottom: 0.5rem;
-}
-
-select {
-  cursor: pointer;
-  outline: none;
-  max-width: 100%;
-  display: block;
-  font-size: 1rem;
-}
-
-select[multiple] option {
-  padding: 0.5rem 1rem;
-}
-
-select:not([multiple]) {
-  padding-right: 2.5rem;
-}
-
-textarea {
-  outline: none;
-  width: 100%;
-  max-width: 100%;
-  min-width: 100%;
-  margin: 0;
-  padding: 0.3rem 0.6rem;
-  resize: vertical;
-}
-
-textarea:not([rows]) {
-  max-height: 40rem;
-  min-height: 8rem;
 }
 
 .bs-none {
