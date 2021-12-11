@@ -1,6 +1,28 @@
 import "./profile.css"; // provided to us in class
 import "./luxa_modified.css"; // additional styles needed for containers, rows, cards, etc.
 
+function InfoBar ({ icon, children }) {
+  return (
+    <span>
+      <i className={icon}></i>&nbsp;&nbsp;
+      {children}
+    </span>
+  )
+}
+
+function ConnectButton({ url, icon }) {
+  return (
+    <a
+      className="has-dflex-center bs-md"
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className={icon}></i>
+    </a>
+  )
+}
+
 function HeadingWithIcon({ icon, children }) {
   return (
     <h1 className="title">
@@ -35,38 +57,17 @@ export default function ProfilePage({ formData }) {
                         />
                       </div>
                       <div className="infos">
-                        <span>
-                          <i className="fas fa-user-circle"></i>&nbsp;&nbsp;
-                          {formData.fullname}
-                        </span>
-                        <span>
-                          <i className="fas fa-briefcase"></i>&nbsp;&nbsp;Full Stack
-                          Developer
-                        </span>
+                        <InfoBar icon="fas fa-user-circle">{formData.fullname}</InfoBar>
+                        <InfoBar icon="fas fa-briefcase">Full Stack Developer</InfoBar>
                       </div>
                     </div>
                   </div>
-
                   <div className="lx-card">
                     <div className="lx-row">
                       <h1 className="title">Connect with Armaan</h1>
                       <div className="mini-cards">
-                        <a
-                          className="has-dflex-center bs-md"
-                          href={formData.urlgit}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <i className="fab fa-github-alt"></i>
-                        </a>
-                        <a
-                          className="has-dflex-center bs-md"
-                          href={formData.urltwit}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <i className="fab fa-twitter"></i>
-                        </a>
+                        <ConnectButton icon="fab fa-github-alt" url={formData.urlgit} />
+                        <ConnectButton icon="fab fa-twitter" url={formData.urltwit} />
                       </div>
                     </div>
                   </div>
