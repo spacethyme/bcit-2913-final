@@ -40,6 +40,19 @@ function TechButton({ title, icon }) {
 }
 
 export default function ProfilePage({ formData }) {
+
+  const firstName = formData.fullname.split(' ')[0];
+  // cuts the firstName field at the first space
+  // this is a temporary fix, but wouldn't be sufficient for production
+  // e.g.: will not work for "Mary Sue Smith" or "Dr. David Jones" -- in the first case, the given name is made of two parts, in the second case the user has included their title.  There are also international considerations.
+  // ideally the user should be able to choose this at the intake form level, but this is going to require some rejiggering
+  // I'm leaving it like this for now, with the (incorrect) assumption that everyone has a "Firstname Lastname" naming structure
+
+  const booklist = formData.books.split(',');
+  // user was instructed to separate books by comma
+  // this splits the 1 text field into an array of individual books
+  // there may be extra space at the beginning of some of the books, but this doesn't get rendered in the final html, so I'm not going to worry about trimming it
+
   return (
     <div className="pageBody">
       <main className="has-dflex-center">
@@ -53,7 +66,7 @@ export default function ProfilePage({ formData }) {
                       <div className="has-dflex-center bs-md pic">
                         <img
                           src="https://github.com/luxonauta.png"
-                          alt="Armaan"
+                          alt={firstName}
                         />
                       </div>
                       <div className="infos">
@@ -64,7 +77,7 @@ export default function ProfilePage({ formData }) {
                   </div>
                   <div className="lx-card">
                     <div className="lx-row">
-                      <h1 className="title">Connect with Armaan</h1>
+                      <h1 className="title">Connect with {firstName}</h1>
                       <div className="mini-cards">
                         <ConnectButton icon="fab fa-github-alt" url={formData.urlgit} />
                         <ConnectButton icon="fab fa-twitter" url={formData.urltwit} />
@@ -77,7 +90,7 @@ export default function ProfilePage({ formData }) {
                 <div className="lx-row">
                   <div className="lx-row lx-card">
                     <HeadingWithIcon icon="fas fa-info-circle">
-                      Welcome to Armaan's corner of the Internet
+                      Welcome to {firstName}'s corner of the Internet
                     </HeadingWithIcon>
                   </div>
                   <div className="lx-row lx-card">
@@ -108,8 +121,14 @@ export default function ProfilePage({ formData }) {
                       My favorite books
                     </HeadingWithIcon>
                     <div className="text">
-                      <p>this should be a list:</p>
-                      <p>{formData.books}</p>
+                      <ol>
+                        {
+                          Object.keys(booklist)
+                            .map(key => 
+                              <li key={key}>{booklist[key]}</li>
+                              )
+                        }
+                      </ol>
                     </div>
                   </div>
                 </div>
