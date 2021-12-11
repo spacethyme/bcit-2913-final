@@ -1,12 +1,142 @@
-import { Link, useMatch } from "react-location";
+import "./profile.css"; // provided to us in class
+import "./luxa_modified.css"; // additional styles needed for containers, rows, cards, etc.
 
-export default function ProfilePage() {
-    const id = useMatch().params.id // pulls id from URL
-    return (
-        <div>
-            <p>--ProfilePage Component--</p>
-            <p>Id = {id}</p>
-            <Link to="/">(return to Intake Form)</Link>
-        </div>
-    )
+function InfoBar ({ icon, children }) {
+  return (
+    <span>
+      <i className={icon}></i>&nbsp;&nbsp;
+      {children}
+    </span>
+  )
+}
+
+function ConnectButton({ url, icon }) {
+  return (
+    <a
+      className="has-dflex-center bs-md"
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className={icon}></i>
+    </a>
+  )
+}
+
+function HeadingWithIcon({ icon, children }) {
+  return (
+    <h1 className="title">
+      <i className={icon}></i>&nbsp;{children}
+    </h1>
+  )
+}
+
+function TechButton({ title, icon }) {
+  return (
+    <span className="has-dflex-center bs-md" title={title}>
+      <i className={icon}></i>
+    </span>
+  )
+}
+
+export default function ProfilePage({ formData }) {
+
+  const firstName = formData.fullname.split(' ')[0];
+  // cuts the firstName field at the first space
+  // this is a temporary fix, but wouldn't be sufficient for production
+  // e.g.: will not work for "Mary Sue Smith" or "Dr. David Jones" -- in the first case, the given name is made of two parts, in the second case the user has included their title.  There are also international considerations.
+  // ideally the user should be able to choose this at the intake form level, but this is going to require some rejiggering
+  // I'm leaving it like this for now, with the (incorrect) assumption that everyone has a "Firstname Lastname" naming structure
+
+  const booklist = formData.books.split(',');
+  // user was instructed to separate books by comma
+  // this splits the 1 text field into an array of individual books
+  // there may be extra space at the beginning of some of the books, but this doesn't get rendered in the final html, so I'm not going to worry about trimming it
+
+  return (
+    <div className="pageBody">
+      <main className="has-dflex-center">
+        <section>
+          <div className="lx-container-85">
+            <div className="lx-row align-stretch">
+              <div className="lx-column is-3">
+                <div className="lx-row">
+                  <div className="lx-card">
+                    <div className="lx-row">
+                      <div className="has-dflex-center bs-md pic">
+                        <img
+                          src="https://github.com/luxonauta.png"
+                          alt={firstName}
+                        />
+                      </div>
+                      <div className="infos">
+                        <InfoBar icon="fas fa-user-circle">{formData.fullname}</InfoBar>
+                        <InfoBar icon="fas fa-briefcase">Full Stack Developer</InfoBar>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="lx-card">
+                    <div className="lx-row">
+                      <h1 className="title">Connect with {firstName}</h1>
+                      <div className="mini-cards">
+                        <ConnectButton icon="fab fa-github-alt" url={formData.urlgit} />
+                        <ConnectButton icon="fab fa-twitter" url={formData.urltwit} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="lx-column">
+                <div className="lx-row">
+                  <div className="lx-row lx-card">
+                    <HeadingWithIcon icon="fas fa-info-circle">
+                      Welcome to {firstName}'s corner of the Internet
+                    </HeadingWithIcon>
+                  </div>
+                  <div className="lx-row lx-card">
+                    <HeadingWithIcon icon="fas fa-hand-point-right">
+                      About me
+                    </HeadingWithIcon>
+                    <div className="text">
+                      {formData.aboutme}
+                    </div>
+                  </div>
+                  <div className="lx-row lx-card">
+                    <HeadingWithIcon icon="fas fa-terminal">
+                      Technologies
+                    </HeadingWithIcon>
+                    <div className="mini-cards">
+                      {formData.html ? <TechButton title="HTML" icon="fab fa-html5" /> : "" }
+                      {formData.css ? <TechButton title="CSS" icon="fab fa-css3-alt" /> : "" }
+                      {formData.sass ? <TechButton title="SASS" icon="fab fa-sass" /> : "" }
+                      {formData.js ? <TechButton title="JS" icon="fab fa-js" /> : "" }
+                      {formData.git ? <TechButton title="Git" icon="fab fa-git" /> : "" }
+                      {formData.react ? <TechButton title="React" icon="fab fa-react" /> : ""}
+                      {formData.nodejs ? <TechButton title="Node.JS" icon="fab fa-node-js" /> : ""}
+                      {formData.php ? <TechButton title="PHP" icon="fab fa-php" /> : ""}
+                    </div>
+                  </div>
+                  <div className="lx-row lx-card">
+                    <HeadingWithIcon icon="fas fa-book">
+                      My favorite books
+                    </HeadingWithIcon>
+                    <div className="text">
+                      <ol>
+                        {
+                          Object.keys(booklist)
+                            .map(key => 
+                              <li key={key}>{booklist[key]}</li>
+                              )
+                        }
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }

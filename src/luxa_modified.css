@@ -1,0 +1,464 @@
+/* the following is adapted from https://cdn.jsdelivr.net/gh/luxonauta/luxa@1.1/dist/expanded/luxa.css */
+
+html,
+body {
+  word-break: break-word;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-size: 100%;
+  color: #212121;
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+main {
+  display: block;
+}
+
+h1 {
+  margin: 0 0 0.67rem;
+  font-size: 3.052rem;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  /* outline: none; removing this for accessibility */
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none;
+  }
+}
+
+.lx-table {
+  width: 100%;
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.lx-table thead tr,
+.lx-table tbody tr {
+  border-bottom: 0.0625rem solid rgba(0, 0, 0, 0.12);
+}
+
+.lx-table thead tr td,
+.lx-table thead tr th,
+.lx-table tbody tr td,
+.lx-table tbody tr th {
+  padding: 0.64rem 0.328rem;
+  display: table-cell;
+  vertical-align: middle;
+  border-radius: 0.168rem;
+  text-align: left;
+}
+
+.lx-table.is-striped tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.lx-card {
+  padding: 2rem;
+  border-radius: 0.328rem;
+  border: none;
+  box-shadow: 0 0.125rem 0.125rem 0 rgba(0, 0, 0, 0.14), 0 0.1875rem 0.0625rem -0.125rem rgba(0, 0, 0, 0.12), 0 0.0625rem 0.3125rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.lx-card.is-shadowless {
+  box-shadow: none;
+}
+
+.lx-card.is-muted {
+  user-select: none;
+  filter: grayscale(0.4) opacity(0.6);
+}
+
+.bs-none {
+  box-shadow: none;
+}
+
+.bs-sm {
+  box-shadow: 0 0.063rem 0.125rem rgba(0, 0, 0, 0.05), 0 0.063rem 0.25rem rgba(0, 0, 0, 0.05), 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
+}
+
+.bs-md {
+  box-shadow: 0 0.063rem 0.188rem rgba(0, 0, 0, 0.06), 0 0.125rem 0.375rem rgba(0, 0, 0, 0.06), 0 0.188rem 0.5rem rgba(0, 0, 0, 0.09);
+}
+
+.bs-lg {
+  box-shadow: 0 0.063rem 0.25rem rgba(0, 0, 0, 0.09), 0 0.188rem 0.5rem rgba(0, 0, 0, 0.09), 0 0.25rem 10.188rem rgba(0, 0, 0, 0.13);
+}
+
+.has-dflex {
+  display: flex;
+}
+
+.has-dflex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center !important;
+}
+
+.align-end {
+  align-items: flex-end !important;
+}
+
+.align-start {
+  align-items: flex-start !important;
+}
+
+.align-stretch {
+  align-items: stretch !important;
+}
+
+.lx-container-50 {
+  width: 50%;
+  max-width: 60rem;
+  min-width: 10rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-50.is-flex {
+  display: flex;
+}
+
+.lx-container-55 {
+  width: 55%;
+  max-width: 66rem;
+  min-width: 11rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-55.is-flex {
+  display: flex;
+}
+
+.lx-container-60 {
+  width: 60%;
+  max-width: 72rem;
+  min-width: 12rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-60.is-flex {
+  display: flex;
+}
+
+.lx-container-65 {
+  width: 65%;
+  max-width: 78rem;
+  min-width: 13rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-65.is-flex {
+  display: flex;
+}
+
+.lx-container-70 {
+  width: 70%;
+  max-width: 84rem;
+  min-width: 14rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-70.is-flex {
+  display: flex;
+}
+
+.lx-container-75 {
+  width: 75%;
+  max-width: 90rem;
+  min-width: 15rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-75.is-flex {
+  display: flex;
+}
+
+.lx-container-80 {
+  width: 80%;
+  max-width: 96rem;
+  min-width: 16rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-80.is-flex {
+  display: flex;
+}
+
+.lx-container-85 {
+  width: 85%;
+  max-width: 102rem;
+  min-width: 17rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-85.is-flex {
+  display: flex;
+}
+
+.lx-container-90 {
+  width: 90%;
+  max-width: 108rem;
+  min-width: 18rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-90.is-flex {
+  display: flex;
+}
+
+.lx-container-95 {
+  width: 95%;
+  max-width: 114rem;
+  min-width: 19rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-95.is-flex {
+  display: flex;
+}
+
+.lx-container-100 {
+  width: 100%;
+  max-width: 120rem;
+  min-width: 20rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lx-container-100.is-flex {
+  display: flex;
+}
+
+@media (max-width: 48rem) {
+  .lx-container-50 {
+    max-width: 24rem;
+  }
+  .lx-container-55 {
+    max-width: 26.4rem;
+  }
+  .lx-container-60 {
+    max-width: 28.8rem;
+  }
+  .lx-container-65 {
+    max-width: 31.2rem;
+  }
+  .lx-container-70 {
+    max-width: 33.6rem;
+  }
+  .lx-container-75 {
+    max-width: 36rem;
+  }
+  .lx-container-80 {
+    max-width: 38.4rem;
+  }
+  .lx-container-85 {
+    max-width: 40.8rem;
+  }
+  .lx-container-90 {
+    max-width: 43.2rem;
+  }
+  .lx-container-95 {
+    max-width: 45.6rem;
+  }
+  .lx-container-100 {
+    max-width: 48rem;
+  }
+}
+
+.lx-grid-wrap {
+  padding: 2rem;
+}
+
+.lx-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 2rem;
+}
+
+.lx-grid + .lx-grid {
+  margin-top: 2rem;
+}
+
+.lx-row {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.lx-row.is-gapless {
+  gap: 0;
+}
+
+.lx-row.is-vstart {
+  align-items: flex-start;
+}
+
+.lx-row.is-vend {
+  align-items: flex-end;
+}
+
+.lx-row.is-start {
+  justify-content: flex-start;
+}
+
+.lx-row.is-end {
+  justify-content: flex-end;
+}
+
+.lx-row.is-even {
+  justify-content: space-evenly;
+}
+
+.lx-row.is-between {
+  justify-content: space-between;
+}
+
+.lx-column {
+  display: block;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.lx-column.is-0 {
+  flex: none;
+  width: 0%;
+}
+
+.lx-column.is-1 {
+  flex: none;
+  width: 8.33333%;
+}
+
+.lx-column.is-2 {
+  flex: none;
+  width: 16.66667%;
+}
+
+.lx-column.is-3 {
+  flex: none;
+  width: 25%;
+}
+
+.lx-column.is-4 {
+  flex: none;
+  width: 33.33333%;
+}
+
+.lx-column.is-5 {
+  flex: none;
+  width: 41.66667%;
+}
+
+.lx-column.is-6 {
+  flex: none;
+  width: 50%;
+}
+
+.lx-column.is-7 {
+  flex: none;
+  width: 58.33333%;
+}
+
+.lx-column.is-8 {
+  flex: none;
+  width: 66.66667%;
+}
+
+.lx-column.is-9 {
+  flex: none;
+  width: 75%;
+}
+
+.lx-column.is-10 {
+  flex: none;
+  width: 83.33333%;
+}
+
+.lx-column.is-11 {
+  flex: none;
+  width: 91.66667%;
+}
+
+.lx-column.is-12 {
+  flex: none;
+  width: 100%;
+}
+
+@media screen and (max-width: 56.25rem) {
+  .lx-row {
+    flex-flow: wrap column;
+  }
+  .lx-column {
+    width: 100%;
+  }
+  .lx-column.is-0 {
+    width: 100%;
+  }
+  .lx-column.is-1 {
+    width: 100%;
+  }
+  .lx-column.is-2 {
+    width: 100%;
+  }
+  .lx-column.is-3 {
+    width: 100%;
+  }
+  .lx-column.is-4 {
+    width: 100%;
+  }
+  .lx-column.is-5 {
+    width: 100%;
+  }
+  .lx-column.is-6 {
+    width: 100%;
+  }
+  .lx-column.is-7 {
+    width: 100%;
+  }
+  .lx-column.is-8 {
+    width: 100%;
+  }
+  .lx-column.is-9 {
+    width: 100%;
+  }
+  .lx-column.is-10 {
+    width: 100%;
+  }
+  .lx-column.is-11 {
+    width: 100%;
+  }
+  .lx-column.is-12 {
+    width: 100%;
+  }
+}
