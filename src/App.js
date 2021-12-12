@@ -8,31 +8,58 @@ const location = new ReactLocation(); // needed for Router Component
 
 export default function App() {
 
-  const [formData, setFormData] = useState ({
-    fullname: "",
-    aboutme: "",
-    urlgit: "",
-    urltwit: "",
-    books: "",
-    html: false,
-    css: false,
-    sass: false,
-    js: false,
-    git: false,
-    react: false,
-    nodejs: false,
-    php: false,
-});
+  const [formData, setFormData] = useState (
+    {
+      "users": [
+        {   
+          id: 0,
+          fullname: "",
+          aboutme: "",
+          urlgit: "",
+          urltwit: "",
+          books: "",
+          html: false,
+          css: false,
+          sass: false,
+          js: false,
+          git: false,
+          react: false,
+          nodejs: false,
+          php: false,
+        },
+        {   
+          id: 1,
+          fullname: "test user",
+          aboutme: "about me. there should only be 6 buttons in the technologies section (no sass/php).",
+          urlgit: "https://www.github.com",
+          urltwit: "https://www.twitter.com",
+          books: "book1, book2, book3",
+          html: true,
+          css: true,
+          sass: false,
+          js: true,
+          git: true,
+          react: true,
+          nodejs: true,
+          php: false,
+        }
+      ]
+    }
+  );
 
   const routes = [
     {
       path: "/",
-      element: <IntakeForm formData={formData} setFormData={setFormData} />
+      element: <IntakeForm formData={formData.users[0]} setFormData={setFormData} />
     },
     {
-      path: "profile",
+      path: "/profile/:id", // this has to go first, check if there is an ID provided
       element: <ProfilePage formData={formData} />
-    }
+    },
+    {
+      path: "profile", // here as a backup, in case no ID is provided
+      element: <ProfilePage formData={formData} />
+    },
   ];
 
   return (

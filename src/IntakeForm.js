@@ -65,7 +65,7 @@ export default function IntakeForm({ formData, setFormData }) {
         setFormData((formData) => {return {...formData, [field]: newvalue}});
     }
 
-    const handleClick = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();  // suppress default behaviour, i.e.: don't refresh page when button is clicked
         navigate({ to: "profile", replace: true })
     }
@@ -99,7 +99,7 @@ export default function IntakeForm({ formData, setFormData }) {
                     <IntakeFormTextField field="urltwit" display="Twitter URL" handleText={handleText} />
                     <IntakeFormTextField field="books" display="Favourite Books (separate by comma)" handleText={handleText} />
 
-                    <button onClick={handleClick} className="signup-btn" type="submit">
+                    <button onClick={handleSubmit} className="signup-btn" type="submit">
                         Create Site
                     </button>
                     
