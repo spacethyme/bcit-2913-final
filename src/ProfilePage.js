@@ -42,12 +42,12 @@ function TechButton({ title, icon }) {
 
 export default function ProfilePage({ formData }) {
 
-  let user = useMatch().params.id;
-  if (!user || !formData.users[user]) {
-    user = 0;
+  let id = useMatch().params.id;
+  if (!id || !formData.users[id]) {
+    id = 0;
   }
-  const userData = formData.users[user];
-  // if no ID is provided, OR if the ID provided in the url doesn't bring up anything from the data set, then use the blank user = 0
+  const userData = formData.users[id];
+  // if no ID is provided, OR if the ID provided doesn't exist in the data set, then use the blank user = 0
 
   const firstName = userData.fullname.split(' ')[0];
   // cuts the firstName field at the first space
