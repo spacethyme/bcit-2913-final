@@ -61,11 +61,14 @@ export default function IntakeForm({ formData, setFormData }) {
 
     const handleText = (e) => {
         let fieldName = e.target.name; // the text fields each have a "name" that matches the field name
-        let userToUpdate = formData.users[0]; // TO DO: having trouble figuring out how to update the fields *inside* the users array, inside formData
-        console.log(fieldName);
-        console.log(userToUpdate);
-        let newvalue = e.target.value; // i.e.: the contents of the input box
-        setFormData((formData) => {return {...formData, [fieldName]: newvalue}});
+        let newValue = e.target.value; // i.e.: the contents of the input box
+        let users = [...formData.users]; // got this from stackoverflow. 1. make a shallow copy of the items
+        let user = {...users[0]} // 2. make a shallow copy of the item we want to mutate (id=0, the "intake" user)
+        user.[fieldName] = newValue; // 3. replace the property you're interested in
+        users[0] = user; // 4. put it back into the array... S.O. says: "N.B. we *are* mutating the array here, but that's why we made a copy first"
+        setFormData((formData) => {return {...formData, users: users}}); // 5. put our copy of users back into formData, via setFormData
+        // it works!!
+        // but is there a better way of doing this?  I feel like it's updating the whole data set every single keystroke, that seems excessive
     }
 
     const handleSubmit = (e) => {
