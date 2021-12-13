@@ -1,6 +1,6 @@
 import "./profile.css"; // provided to us in class
 import "./luxa_modified.css"; // additional styles needed for containers, rows, cards, etc.
-import { useMatch } from 'react-location';
+import { Link, useMatch } from 'react-location';
 
 function InfoBar ({ icon, children }) {
   return (
@@ -47,7 +47,7 @@ export default function ProfilePage({ formData }) {
     id = 0;
   }
   const userData = formData.users[id];
-  // if no ID is provided, OR if the ID provided doesn't exist in the data set, then use the blank user = 0
+  // if no ID is provided in url, OR if the ID provided doesn't exist in the data set, then use the blank user = 0
 
   const firstName = userData.fullname.split(' ')[0];
   // cuts the firstName field at the first space
@@ -138,6 +138,9 @@ export default function ProfilePage({ formData }) {
                         }
                       </ol>
                     </div>
+                  </div>
+                  <div className="lx-row lx-card">
+                    <Link to="/">(return to intake form)</Link>
                   </div>
                 </div>
               </div>

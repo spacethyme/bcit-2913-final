@@ -8,10 +8,10 @@ const location = new ReactLocation(); // needed for Router Component
 
 export default function App() {
 
-  const [formData, setFormData] = useState (
+  const [formData, setFormData] = useState ( // formData is an object
     {
-      "users": [
-        {   
+      "users": [ // formData contains a property with the name "users" which contains an array
+        {
           id: 0,
           fullname: "",
           aboutme: "",
@@ -50,7 +50,7 @@ export default function App() {
   const routes = [
     {
       path: "/",
-      element: <IntakeForm formData={formData.users[0]} setFormData={setFormData} />
+      element: <IntakeForm formData={formData} setFormData={setFormData} />
     },
     {
       path: "/profile/:id", // this has to go first, check if there is an ID provided
@@ -65,6 +65,7 @@ export default function App() {
   return (
     <Router routes={routes} location={location}>
       <div className="App">
+        <p>{JSON.stringify(formData)}</p>
         <Outlet />
       </div>
     </Router>

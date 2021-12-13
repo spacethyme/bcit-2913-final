@@ -60,14 +60,18 @@ export default function IntakeForm({ formData, setFormData }) {
     }
 
     const handleText = (e) => {
-        let field = e.target.name; // the text fields each have a "name" that matches the field name
+        let fieldName = e.target.name; // the text fields each have a "name" that matches the field name
+        let userToUpdate = formData.users[0]; // TO DO: having trouble figuring out how to update the fields *inside* the users array, inside formData
+        console.log(fieldName);
+        console.log(userToUpdate);
         let newvalue = e.target.value; // i.e.: the contents of the input box
-        setFormData((formData) => {return {...formData, [field]: newvalue}});
+        setFormData((formData) => {return {...formData, [fieldName]: newvalue}});
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();  // suppress default behaviour, i.e.: don't refresh page when button is clicked
-        navigate({ to: "profile", replace: true })
+        // to do: update big array with new user data
+        navigate({ to: "profile/1", replace: true }) // to do: change "1" to variable for new user assigned id
     }
 
     return (
