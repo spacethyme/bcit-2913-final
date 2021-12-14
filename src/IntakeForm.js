@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-location";
+import { Link, useNavigate } from "react-location";
 
 function IntakeFormTextField({ field, display, handleInput }) {
     return (
@@ -50,32 +50,48 @@ function IntakeFormCheckboxField({ field, display, handleInput }) {
     )
 }
 
-export default function IntakeForm({ userTemplate, setDatabase }) {
+export default function IntakeForm({ database, setDatabase }) {
 
-    const [newUserData, setNewUserData] = useState(userTemplate);
+    const userTemplate = database.users[0];
+    const [newUser, setNewUser] = useState(userTemplate);
 
     const navigate = useNavigate();
 
     const handleInput = (e, type) => {
-        console.log(type);
-        let fieldName = e.target.name; // each field has a "name" that matches field name in the userTemplate
+
+        let fieldName = e.target.name; // each target field has a "name" that matches field name in the userTemplate
 
         let newValue = e.target.value; // for text fields this will be the contents of the box; for checkboxes this will be the name of the field
-        if (type == "check") {
+        if (type === "check") {
             newValue = e.target.checked; // i.e.: if the field is a checkbox, use the "true or false" instead of the field "value" (which is just the field name)
         }
 
-        let newUserClone = {...newUserData};
+        let newUserClone = {...newUser};
         newUserClone[fieldName] = newValue;
-        setNewUserData(newUserClone);
+        setNewUser(newUserClone);
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();  // suppress default behaviour, i.e.: don't refresh page when button is clicked
-        // TO DO: assign ID to new user
-        // TO DO: update big array with new user data using setDatabase
-        console.log(setDatabase);
-        navigate({ to: "profile/1", replace: true }) // to do: change "1" to variable for new user assigned id
+        // suppress default behaviour, i.e.: don't refresh page when button is clicked
+        e.preventDefault();
+        
+        // calculate new user ID
+        const lastUserId = database.users[database.users.length - 1].id;
+        const newUserId = lastUserId + 1;
+
+        // create a clone of newUser and add the newUserId to it
+        // ...using a clone because there is lag involved with the "setNewUser" function
+        // ...setNewUser *will* assign the new user id, but *not* before the next step, which means it doesn't get added to the database
+        const newUserClone = {...newUser, id : newUserId};
+
+        // make a clone of the user list; add the new clone to it
+        const users = [...database.users, newUserClone];
+
+        // update the database with the new clone of users
+        setDatabase((database) => {return {...database, users : users}});
+
+        // navigate to new profile
+        navigate({ to: `profile/${newUserId}`, replace: true })
     }
 
     return (
@@ -84,7 +100,18 @@ export default function IntakeForm({ userTemplate, setDatabase }) {
                 <div>
                     <h1>DevCard</h1>
                     <p>Your personal digital portfolio</p>
-                    <p>{JSON.stringify(newUserData)}</p>
+                    <p>New User Data: {JSON.stringify(newUser)}</p>
+                    <ul>
+                        {
+                            database.users.map((user) => (
+                                <li key={user.id}>
+                                    <Link to={`/profile/${user.id}`}>
+                                        {user.id}
+                                    </Link>
+                                </li>
+                            ))
+                        }
+                    </ul>
                 </div>
             </section>
             <section className="intake-form">

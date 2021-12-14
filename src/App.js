@@ -50,7 +50,7 @@ export default function App() {
   const routes = [
     {
       path: "/",
-      element: <IntakeForm userTemplate={database.users[0]} setDatabase={setDatabase} />
+      element: <IntakeForm database={database} setDatabase={setDatabase} />
     },
     {
       path: "/profile/:id", // this has to go first, check if there is an ID provided
