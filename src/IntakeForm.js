@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-location";
 
 function IntakeFormTextField({ field, display, handleText }) {
@@ -49,31 +50,33 @@ function IntakeFormCheckboxField({ field, display, handleCheck }) {
     )
 }
 
-export default function IntakeForm({ formData, setFormData }) {
+export default function IntakeForm({ userTemplate, setDatabase }) {
+
+    const [newUserData, setNewUserData] = useState(userTemplate);
 
     const navigate = useNavigate();
 
     const handleCheck = (e) => {
-        let field = e.target.value; // the checkboxes each have a "value" that matches field name
-        let newvalue = e.target.checked; // i.e.: true or false
-        setFormData((formData) => {return {...formData, [field]: newvalue}});
+        let fieldName = e.target.value; // the checkboxes each have a "value" that matches field name
+        let newValue = e.target.checked; // i.e.: true or false
+        let newUserClone = {...newUserData};
+        newUserClone[fieldName] = newValue;
+        setNewUserData(newUserClone);
     }
 
     const handleText = (e) => {
         let fieldName = e.target.name; // the text fields each have a "name" that matches the field name
         let newValue = e.target.value; // i.e.: the contents of the input box
-        let users = [...formData.users]; // got this from stackoverflow. 1. make a shallow copy of the items
-        let user = {...users[0]} // 2. make a shallow copy of the item we want to mutate (id=0, the "intake" user)
-        user.[fieldName] = newValue; // 3. replace the property you're interested in
-        users[0] = user; // 4. put it back into the array... S.O. says: "N.B. we *are* mutating the array here, but that's why we made a copy first"
-        setFormData((formData) => {return {...formData, users: users}}); // 5. put our copy of users back into formData, via setFormData
-        // it works!!
-        // but is there a better way of doing this?  I feel like it's updating the whole data set every single keystroke, that seems excessive
+        let newUserClone = {...newUserData};
+        newUserClone[fieldName] = newValue;
+        setNewUserData(newUserClone);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();  // suppress default behaviour, i.e.: don't refresh page when button is clicked
-        // to do: update big array with new user data
+        // TO DO: assign ID to new user
+        // TO DO: update big array with new user data using setDatabase
+        console.log(setDatabase);
         navigate({ to: "profile/1", replace: true }) // to do: change "1" to variable for new user assigned id
     }
 
@@ -83,6 +86,7 @@ export default function IntakeForm({ formData, setFormData }) {
                 <div>
                     <h1>DevCard</h1>
                     <p>Your personal digital portfolio</p>
+                    <p>{JSON.stringify(newUserData)}</p>
                 </div>
             </section>
             <section className="intake-form">

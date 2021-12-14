@@ -8,7 +8,7 @@ const location = new ReactLocation(); // needed for Router Component
 
 export default function App() {
 
-  const [formData, setFormData] = useState ( // formData is an object
+  const [database, setDatabase] = useState ( // database is an object
     {
       "users": [ // formData contains a property with the name "users" which contains an array
         {
@@ -50,22 +50,22 @@ export default function App() {
   const routes = [
     {
       path: "/",
-      element: <IntakeForm formData={formData} setFormData={setFormData} />
+      element: <IntakeForm userTemplate={database.users[0]} setDatabase={setDatabase} />
     },
     {
       path: "/profile/:id", // this has to go first, check if there is an ID provided
-      element: <ProfilePage formData={formData} />
+      element: <ProfilePage formData={database} />
     },
     {
       path: "profile", // here as a backup, in case no ID is provided
-      element: <ProfilePage formData={formData} />
+      element: <ProfilePage formData={database} />
     },
   ];
 
   return (
     <Router routes={routes} location={location}>
       <div className="App">
-        <p>{JSON.stringify(formData)}</p>
+        <p>{JSON.stringify(database)}</p>
         <Outlet />
       </div>
     </Router>
