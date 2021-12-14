@@ -70,24 +70,6 @@ export default function IntakeForm({ userTemplate, setDatabase }) {
         setNewUserData(newUserClone);
     }
 
-    const handleCheck = (e, type) => {
-        console.log(type);
-        let fieldName = e.target.name; // the checkboxes each have a "value"/"name" that matches field name
-        let newValue = e.target.checked; // i.e.: true or false
-        let newUserClone = {...newUserData};
-        newUserClone[fieldName] = newValue;
-        setNewUserData(newUserClone);
-    }
-
-    const handleText = (e, type) => {
-        console.log(type);
-        let fieldName = e.target.name; // the text fields each have a "name" that matches the field name
-        let newValue = e.target.value; // i.e.: the contents of the input box
-        let newUserClone = {...newUserData};
-        newUserClone[fieldName] = newValue;
-        setNewUserData(newUserClone);
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault();  // suppress default behaviour, i.e.: don't refresh page when button is clicked
         // TO DO: assign ID to new user
