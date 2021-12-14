@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-location";
 
-function IntakeFormTextField({ field, display, handleText }) {
+function IntakeFormTextField({ field, display, handleInput }) {
     return (
         <div className="input-container">
             <label id={`${field}-label`} htmlFor={field}>{display}</label>
@@ -11,13 +11,13 @@ function IntakeFormTextField({ field, display, handleText }) {
                 name={field}
                 placeholder={display}
                 aria-labelledby={`${field}-label`}
-                onChange={(e) => handleText(e)}
+                onChange={(e) => handleInput(e, "text")}
             />
         </div>
     )
 }
 
-function IntakeFormTextarea({ field, display, handleText }) {
+function IntakeFormTextarea({ field, display, handleInput }) {
     return (
         <div className="input-container">
             <label id={`${field}-label`} htmlFor={field}>{display}</label>
@@ -27,13 +27,13 @@ function IntakeFormTextarea({ field, display, handleText }) {
                 placeholder={display}
                 rows="3"
                 aria-labelledby={`${field}-label`}
-                onChange={(e) => handleText(e)}
+                onChange={(e) => handleInput(e, "text")}
             />
         </div>
     )
 }
 
-function IntakeFormCheckboxField({ field, display, handleCheck }) {
+function IntakeFormCheckboxField({ field, display, handleInput }) {
     return (
         <>
             <label id={`${field}-label`} htmlFor={field}>
@@ -42,7 +42,7 @@ function IntakeFormCheckboxField({ field, display, handleCheck }) {
                     value={field}
                     id={field}
                     name={field}
-                    onChange={(e) => handleCheck(e)}
+                    onChange={(e) => handleInput(e, "check")}
                 />
                 {display}
             </label>
@@ -56,15 +56,31 @@ export default function IntakeForm({ userTemplate, setDatabase }) {
 
     const navigate = useNavigate();
 
-    const handleCheck = (e) => {
-        let fieldName = e.target.value; // the checkboxes each have a "value" that matches field name
+    const handleInput = (e, type) => {
+        console.log(type);
+        let fieldName = e.target.name; // each field has a "name" that matches field name in the userTemplate
+
+        let newValue = e.target.value; // for text fields this will be the contents of the box; for checkboxes this will be the name of the field
+        if (type == "check") {
+            newValue = e.target.checked; // i.e.: if the field is a checkbox, use the "true or false" instead of the field "value" (which is just the field name)
+        }
+
+        let newUserClone = {...newUserData};
+        newUserClone[fieldName] = newValue;
+        setNewUserData(newUserClone);
+    }
+
+    const handleCheck = (e, type) => {
+        console.log(type);
+        let fieldName = e.target.name; // the checkboxes each have a "value"/"name" that matches field name
         let newValue = e.target.checked; // i.e.: true or false
         let newUserClone = {...newUserData};
         newUserClone[fieldName] = newValue;
         setNewUserData(newUserClone);
     }
 
-    const handleText = (e) => {
+    const handleText = (e, type) => {
+        console.log(type);
         let fieldName = e.target.name; // the text fields each have a "name" that matches the field name
         let newValue = e.target.value; // i.e.: the contents of the input box
         let newUserClone = {...newUserData};
@@ -93,22 +109,22 @@ export default function IntakeForm({ userTemplate, setDatabase }) {
                 <form>
                     <h2>Create your DevCard</h2>
 
-                    <IntakeFormTextField field="fullname" display="Your Full Name" handleText={handleText} />
-                    <IntakeFormTextarea field="aboutme" display="About Me" handleText={handleText} />
+                    <IntakeFormTextField field="fullname" display="Your Full Name" handleInput={handleInput} />
+                    <IntakeFormTextarea field="aboutme" display="About Me" handleInput={handleInput} />
                     <fieldset>
                         <legend>Technologies you know:</legend>
-                        <IntakeFormCheckboxField field="html" display="HTML" handleCheck={handleCheck} />
-                        <IntakeFormCheckboxField field="css" display="CSS" handleCheck={handleCheck} />
-                        <IntakeFormCheckboxField field="sass" display="SASS" handleCheck={handleCheck} />
-                        <IntakeFormCheckboxField field="js" display="JS" handleCheck={handleCheck} />
-                        <IntakeFormCheckboxField field="git" display="Git" handleCheck={handleCheck} />
-                        <IntakeFormCheckboxField field="react" display="React" handleCheck={handleCheck} />
-                        <IntakeFormCheckboxField field="nodejs" display="Node.JS" handleCheck={handleCheck} />
-                        <IntakeFormCheckboxField field="php" display="PHP" handleCheck={handleCheck} />
+                        <IntakeFormCheckboxField field="html" display="HTML" handleInput={handleInput} />
+                        <IntakeFormCheckboxField field="css" display="CSS" handleInput={handleInput} />
+                        <IntakeFormCheckboxField field="sass" display="SASS" handleInput={handleInput} />
+                        <IntakeFormCheckboxField field="js" display="JS" handleInput={handleInput} />
+                        <IntakeFormCheckboxField field="git" display="Git" handleInput={handleInput} />
+                        <IntakeFormCheckboxField field="react" display="React" handleInput={handleInput} />
+                        <IntakeFormCheckboxField field="nodejs" display="Node.JS" handleInput={handleInput} />
+                        <IntakeFormCheckboxField field="php" display="PHP" handleInput={handleInput} />
                     </fieldset>
-                    <IntakeFormTextField field="urlgit" display="GitHub URL" handleText={handleText} />
-                    <IntakeFormTextField field="urltwit" display="Twitter URL" handleText={handleText} />
-                    <IntakeFormTextField field="books" display="Favourite Books (separate by comma)" handleText={handleText} />
+                    <IntakeFormTextField field="urlgit" display="GitHub URL" handleInput={handleInput} />
+                    <IntakeFormTextField field="urltwit" display="Twitter URL" handleInput={handleInput} />
+                    <IntakeFormTextField field="books" display="Favourite Books (separate by comma)" handleInput={handleInput} />
 
                     <button onClick={handleSubmit} className="signup-btn" type="submit">
                         Create Site
