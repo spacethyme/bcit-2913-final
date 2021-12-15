@@ -26,22 +26,6 @@ export default function App() {
           react: false,
           nodejs: false,
           php: false,
-        },
-        {   
-          id: 1,
-          fullname: "test user",
-          aboutme: "about me. there should only be 6 buttons in the technologies section (no sass/php).",
-          urlgit: "https://www.github.com",
-          urltwit: "https://www.twitter.com",
-          books: "book1, book2, book3",
-          html: true,
-          css: true,
-          sass: false,
-          js: true,
-          git: true,
-          react: true,
-          nodejs: true,
-          php: false,
         }
       ]
     }
@@ -65,7 +49,6 @@ export default function App() {
   return (
     <Router routes={routes} location={location}>
       <div className="App">
-        <p>{JSON.stringify(database)}</p>
         <Outlet />
       </div>
     </Router>

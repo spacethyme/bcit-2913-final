@@ -50,6 +50,31 @@ function IntakeFormCheckboxField({ field, display, handleInput }) {
     )
 }
 
+function PreviousSites({ users }) {
+    
+    // new array, only keep the users that have a name (ignore the user template, and anyone who was entered without a name)
+    const filteredUsers = users.filter(user => user.fullname);
+
+    // if there are no users with names, then return nothing, end function
+    if (filteredUsers.length === 0) {return ("")}
+
+    // else do this... actual "else" statement not needed
+    // this creates a list of any previous sites that have been created within this session
+    // was helpful for testing, decided to leave it in
+    return (
+        <div className="previous-sites">
+            <h2>Previous sites:</h2>
+            <ul>
+                {filteredUsers.map((user) => (
+                    <Link to={`/profile/${user.id}`} key={user.id}>
+                        <li>{user.fullname}</li>
+                    </Link>
+                ))}
+            </ul>
+        </div>
+    )
+}
+
 export default function IntakeForm({ database, setDatabase }) {
 
     const userTemplate = database.users[0];
@@ -59,14 +84,14 @@ export default function IntakeForm({ database, setDatabase }) {
 
     const handleInput = (e, type) => {
 
-        let fieldName = e.target.name; // each target field has a "name" that matches field name in the userTemplate
+        const fieldName = e.target.name; // each target field has a "name" that matches field name in the userTemplate
 
         let newValue = e.target.value; // for text fields this will be the contents of the box; for checkboxes this will be the name of the field
         if (type === "check") {
             newValue = e.target.checked; // i.e.: if the field is a checkbox, use the "true or false" instead of the field "value" (which is just the field name)
         }
 
-        let newUserClone = {...newUser};
+        const newUserClone = {...newUser};
         newUserClone[fieldName] = newValue;
         setNewUser(newUserClone);
     }
@@ -100,18 +125,7 @@ export default function IntakeForm({ database, setDatabase }) {
                 <div>
                     <h1>DevCard</h1>
                     <p>Your personal digital portfolio</p>
-                    <p>New User Data: {JSON.stringify(newUser)}</p>
-                    <ul>
-                        {
-                            database.users.map((user) => (
-                                <li key={user.id}>
-                                    <Link to={`/profile/${user.id}`}>
-                                        {user.id}
-                                    </Link>
-                                </li>
-                            ))
-                        }
-                    </ul>
+                    <PreviousSites users={database.users} />
                 </div>
             </section>
             <section className="intake-form">

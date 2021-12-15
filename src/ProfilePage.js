@@ -139,8 +139,12 @@ export default function ProfilePage({ formData }) {
                       </ol>
                     </div>
                   </div>
-                  <div className="lx-row lx-card">
-                    <Link to="/">(return to intake form)</Link>
+                  <div className="lx-row mini-cards">
+                    <Link to="/">
+                        <InfoBar icon="fas fa-plus-square">
+                          Create Another Site
+                      </InfoBar>
+                    </Link>
                   </div>
                 </div>
               </div>
