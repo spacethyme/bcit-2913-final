@@ -36,6 +36,12 @@ textarea {
   margin: 2em 0;
 }
 
+.previous-sites ul {
+  text-align: left;
+  margin: auto;
+  max-width: 300px;
+}
+
 .intake-form {
   display: flex;
   justify-content: center;

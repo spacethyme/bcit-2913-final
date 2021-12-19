@@ -8,31 +8,42 @@ const location = new ReactLocation(); // needed for Router Component
 
 export default function App() {
 
-  const [formData, setFormData] = useState ({
-    fullname: "",
-    aboutme: "",
-    urlgit: "",
-    urltwit: "",
-    books: "",
-    html: false,
-    css: false,
-    sass: false,
-    js: false,
-    git: false,
-    react: false,
-    nodejs: false,
-    php: false,
-});
+  const [database, setDatabase] = useState ( // database is an object
+    {
+      "users": [ // formData contains a property with the name "users" which contains an array
+        {
+          id: 0,
+          fullname: "",
+          aboutme: "",
+          urlgit: "",
+          urltwit: "",
+          books: "",
+          html: false,
+          css: false,
+          sass: false,
+          js: false,
+          git: false,
+          react: false,
+          nodejs: false,
+          php: false,
+        }
+      ]
+    }
+  );
 
   const routes = [
     {
       path: "/",
-      element: <IntakeForm formData={formData} setFormData={setFormData} />
+      element: <IntakeForm database={database} setDatabase={setDatabase} />
     },
     {
-      path: "profile",
-      element: <ProfilePage formData={formData} />
-    }
+      path: "/profile/:id", // this has to go first, check if there is an ID provided
+      element: <ProfilePage formData={database} />
+    },
+    {
+      path: "profile", // here as a backup, in case no ID is provided
+      element: <ProfilePage formData={database} />
+    },
   ];
 
   return (
